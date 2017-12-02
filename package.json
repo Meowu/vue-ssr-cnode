@@ -1,0 +1,22 @@
+{
+  "name": "vue-ssr",
+  "version": "1.0.0",
+  "description": "A repository to try Vue.js SSR usages.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Vue",
+    "SSR",
+    "Express",
+    "Node.js"
+  ],
+  "author": "Meowu",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.16.2",
+    "vue": "^2.5.9",
+    "vue-server-renderer": "^2.5.9"
+  }
+}
