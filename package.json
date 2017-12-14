@@ -38,6 +38,7 @@
     "extract-text-webpack-plugin": "^3.0.2",
     "file-loader": "^1.1.5",
     "friendly-errors-webpack-plugin": "^1.6.1",
+    "memory-fs": "^0.4.1",
     "nodemon": "^1.12.1",
     "rimraf": "^2.6.2",
     "url-loader": "^0.6.2",
