@@ -38,7 +38,7 @@ module.exports = function setupDevServer (app, templatePath, cb) {
   })
 
   // modify client config to work with hot middleware
-  clientConfig.entry.app = ['webpack-hot-middleware/client', clientConfig.entry.app]
+  clientConfig.entry.app = ['webpack-hot-middleware/client', clientConfig.entry.app] // What happens when you pass an array to entry? Passing an array of file paths to the entry property creates what is known as a "multi-main entry". This is useful when you would like to inject multiple dependent files together and graph their dependencies into one "chunk".
   clientConfig.output.filename = '[name].js'
   clientConfig.plugins.push(
     new webpack.HotModuleReplacementPlugin(), // 大多数情况下直接引入插件即可，不需要提供选项。
