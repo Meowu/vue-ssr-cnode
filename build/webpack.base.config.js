@@ -2,7 +2,7 @@ const path = require('path')
 const webpack = require('webpack')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
-// const vueConfig = require('')
+const vueConfig = require('./vue-loader.config')
 
 const isProd = process.env.NODE_ENV === 'production'
 
@@ -24,7 +24,7 @@ module.exports = {
       {
         test: /\.vue$/,
         loader: 'vue-loader',
-        // options: vueConfig
+        options: vueConfig
       },
       {
         test: /\.js$/,
