@@ -25,9 +25,10 @@ class Api {
 
   request(data) {
     const config = Object.assign({}, CONIG)
+    const ACCESS_TOKEN = '872a5148-c8dd-4afa-8100-137c29df2f55'
     data.header && (config.headers = data.header)
     config.body = data.params
-    data.accesstoken && (config.body.accesstoken = 'afwef87690zz=242' )
+    data.accesstoken && (config.body.accesstoken = ACCESS_TOKEN)
     config.url = data.url
     config.method = data.method
     axios.default.withCredentials = true

@@ -76,7 +76,7 @@ function render(req, res) {
   }
 
   const context = {
-    title: 'Vue-ssr-cnode',
+    title: 'vue-ssr-cnode',
     url: req.url
   }
 

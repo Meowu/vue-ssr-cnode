@@ -13,6 +13,21 @@ export function createRouter() {
         path: '/',
         name: 'Hello',
         component: () => import('../components/Hello.vue')
+      },
+      {
+        path: '/all',
+      },
+      {
+        path: '/good',
+      },
+      {
+        path: '/share',
+      },
+      {
+        path: '/ask',
+      },
+      {
+        path: '/hire'
       }
     ]
   })
