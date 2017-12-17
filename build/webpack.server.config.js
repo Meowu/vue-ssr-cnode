@@ -17,7 +17,7 @@ const BASE = require("./webpack.base.config");
 module.exports = merge(BASE, {
   target: 'node',
   devtool: '#source-map', //source-map - A full SourceMap is emitted as a separate file. It adds a reference comment to the bundle so development tools know where to find it.You should configure your server to disallow access to the Source Map file for normal users!
-  entry: '../src/entry.server.js',
+  entry: './src/entry.server.js',
   output: {
     filename: 'server.bundle.js',
     libraryTarget: 'commonjs2' // These options assign the return value of the entry point (e.g. whatever the entry point exported) to a specific object under the name defined by output.library. The return value of your entry point will be assigned to the module.exports. As the name implies, this is used in CommonJS environments.

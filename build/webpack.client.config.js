@@ -5,7 +5,7 @@ const BASE = require('./webpack.base.config')
 
 module.exports = merge(BASE, {
   entry: {
-    app: '../src/entry.client.js'
+    app: './src/entry.client.js' // ./src前面是一点而不是两点
   },
   resolve: {
     // alias: { 'create-api': '../src/'}

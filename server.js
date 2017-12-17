@@ -16,7 +16,7 @@ const serverInfo =
 
 const app = express()
 
-function createRenderer(bundlr, options) {
+function createRenderer(bundle, options) {
   return createBundleRenderer(bundle, 
   Object.assign(options, {
     runInNewContext: false
@@ -76,7 +76,7 @@ function render(req, res) {
   }
 
   const context = {
-    title: 'Vue HN 2.0',
+    title: 'Vue-ssr-cnode',
     url: req.url
   }
 

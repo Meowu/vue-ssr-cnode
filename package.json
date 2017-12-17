@@ -2,7 +2,6 @@
   "name": "vue-ssr",
   "version": "1.0.0",
   "description": "A repository to try Vue.js SSR usages.",
-  // "main": "index.js",
   "private": true,
   "scripts": {
     "dev": "node server",
@@ -46,6 +45,8 @@
     "memory-fs": "^0.4.1",
     "nodemon": "^1.12.1",
     "rimraf": "^2.6.2",
+    "stylus": "^0.54.5",
+    "stylus-loader": "^3.0.1",
     "url-loader": "^0.6.2",
     "vue-loader": "^13.5.0",
     "vue-style-loader": "^3.0.3",

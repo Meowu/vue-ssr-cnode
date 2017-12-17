@@ -44,14 +44,14 @@ module.exports = {
         use: isProd 
         ? ExtractTextPlugin.extract({
           use: 'css-loader?minimize',
-          fallback: 'vue-style-loader'
+          fallback: 'vue-style-loader' // 
         })
         : ['vue-style-loader', 'css-loader']
       }
     ]
   },
   performance: {
-    maxEntryPointsize: 400000, // This option controls when webpack should emit performance hints based on the maximum entrypoint size. default 250000.
+    maxEntrypointSize: 400000, // This option controls when webpack should emit performance hints based on the maximum entrypoint size. default 250000.
     hints: isProd ? 'error': 'warning' // Turns hints on/off. In addition, tells webpack to throw either an error or a warning when hints are found. We recommend 'warning' for development environments and 'error' during production builds to help prevent deploying production bundles that are too large, impacting webpage performance.
   },
   plugins: isProd ? [
