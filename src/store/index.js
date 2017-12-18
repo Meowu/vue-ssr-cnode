@@ -4,5 +4,7 @@ import Vuex from "vuex";
 Vue.use(Vuex);
 
 export function createStore() {
-  return new Vuex.Store({});
+  return new Vuex.Store({
+    
+  });
 }

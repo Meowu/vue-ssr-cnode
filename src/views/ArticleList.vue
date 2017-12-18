@@ -21,7 +21,6 @@
 <script>
 import axios from 'axios';
 import {mapState} from 'vuex';
-import toast from '../common/utils/toast'
 
 export default {
   name: 'article-list',
