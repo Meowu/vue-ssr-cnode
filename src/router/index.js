@@ -12,8 +12,7 @@ export function createRouter() {
     routes: [
       {
         path: '/',
-        name: 'Hello',
-        component: () => import('../components/Hello.vue')
+        component: createList('all')
       },
       {
         path: '/all',

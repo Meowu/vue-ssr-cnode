@@ -13,7 +13,8 @@ export default {
   baseURL: BASE_URL,
   timeout: 15000,
   headers: {
-    ...DEFAULT_X_HEADER,
+    // ...DEFAULT_X_HEADER,
+    'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8',
     'X-Requested-With': 'XMLHttpRequest'
   }
 }

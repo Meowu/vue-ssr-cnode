@@ -29,7 +29,12 @@ module.exports = {
       {
         test: /\.js$/,
         loader: 'babel-loader',
-        exclude: /node_modules/
+        exclude: /node_modules/ // 不让babel去转换node_modules里面的包。
+        // include: [
+        //  在确定的情况下 只去解析运行目录下的 src 和 demo 文件夹
+        //  path.join(process.cwd(), './src'),
+        //  path.join(process.cwd(), './demo')
+        // ]
       },
       {
         test: /\.(png|jpg|gif|svg)$/,

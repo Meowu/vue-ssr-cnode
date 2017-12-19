@@ -1,6 +1,6 @@
-const Api = rquire('./api.js')
+const Api = rquire('./api')
 
-module.exports = {
+export default {
   /**
    * 获取主题首页
    * @param {Object} args 
@@ -13,7 +13,7 @@ module.exports = {
     const data = {
       url: '/topics',
       params: {
-        ...args
+        // ...args
       }
     }
     return Api.get(data)
@@ -48,7 +48,9 @@ module.exports = {
     const data = {
       url: '/topics',
       accesstoken: true,
-      params: { ...args }
+      params: { 
+        // ...args 
+      }
     }
     return Api.post(data)
   },
@@ -67,7 +69,7 @@ module.exports = {
       url: '/topics/update',
       accesstoken: true,
       params: {
-        ...args
+        // ...args
       }
     }
     return Api.post(data)

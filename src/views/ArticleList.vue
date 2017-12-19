@@ -12,30 +12,38 @@
         <span class="topic" v-show='topic.tab' :class="{top: topic.top}" >{{ topic.top? topic.top:topic.tab | formatTab}}</span>
       </div>
     </div>
-    <div class="loading" v-show='loading'>
+    <!-- <div class="loading" v-show='loading'>
       玩命加载中...
-    </div>
+    </div> -->
   </div>
 </template>
 
 <script>
 import axios from 'axios';
-import {mapState} from 'vuex';
+import { mapState } from 'vuex';
 
 export default {
   name: 'article-list',
   data () {
-    return {
+    return {}
+  },
+  props: {
+    type: {
+      type: String,
+      required: true
     }
   },
   computed: {
-    ...mapState( {
-      limit: state => state.articles.limit,
-      page: state => state.articles.page,
-      currentTab: state => state.articles.currentTab,
-      topic_data: state => state.articles.topic_data,
-      loading: state => state.loading,
-    }),
+    // ...mapState(
+    //   limit: state => state.articles.limit,
+    //   page: state => state.articles.page,
+    //   currentTab: state => state.articles.currentTab,
+    //   topic_data: state => state.articles.topic_data,
+    //   loading: state => state.loading,
+    // })
+    topic_data(){
+      this.$store.state.lists[this.type]
+    }
   },
   methods: {
     fetchData () {
@@ -80,30 +88,52 @@ export default {
     }
   },
   created () {   // 方法和生命周期钩子中引用计算属性要加this
-    this.fetchData()
+    // this.fetchData()
   },
-  watch: {
-    // 再次点击同一个tab，由于路由不变数据不会重新渲染
-    // 并且由于在点击事件中设置了scrollTo(0, 0)，会直接返回顶部
-    '$route.params.tab' () {  //路由变化，重新渲染数据以便复用组件，不带this。
-      this.fetchData()
-      // toast()
-    }
-  },
-  mounted () {
-    window.onscroll = () => {
-      this.throttle(this.asynData)
-    }
-  },
-  beforeDestroy () {
-    window.onscroll = null
+  filters: {
+    formatTime: function (value) {
+      let interval = Date.now() - Date.parse(value)
+      if (interval / (1000*60*60*24*30*12) >= 1) {
+        return `${parseInt(interval / (1000*60*60*24*30*12))}年前`
+      } else if (interval / (1000*60*60*24*30) >= 1) {
+        return `${parseInt(interval / (1000*60*60*24*30))}个月前`
+      } else if (interval / (1000*60*60*24) >= 1) {
+        return `${parseInt(interval / (1000*60*60*24))}天前`
+      } else if (interval / (1000*60*60) >= 1) {
+        return `${parseInt(interval / (1000*60*60))}小时前`
+      } else if (interval / (1000*60) >= 1) {
+        return `${parseInt(interval / (1000*60))}分钟前`
+      }
+    },
+    formatTab: function (value) {
+      switch (value) {
+        case 'ask':
+          return '问答';
+          break;
+        case 'share':
+          return '分享';
+          break;
+        case 'good':
+          return '精华';
+          break;
+        case 'job':
+          return '招聘';
+          break;
+        case 'dev':
+          return '测试';
+          break;
+        default:
+          return '置顶';
+      }
+    },
   }
-  // activated () {
-  //   axios.get(`https://cnodejs.org/api/v1/topics?tab=${this.currentTab}&page=${this.page}&limit=${this.limit}`)
-  //   .then((res) => {
-  //     this.$store.dispatch('initData', res.data.data)
-  //     // this.$store.dispatch('articleList', res.data)
-  //   })
+  // mounted () {
+  //   window.onscroll = () => {
+  //     this.throttle(this.asynData)
+  //   }
+  // },
+  // beforeDestroy () {
+  //   window.onscroll = null
   // }
 }
 </script>

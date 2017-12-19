@@ -15,7 +15,7 @@ module.exports = {
       url: `/topic/${id}/replies`,
       accesstoken: true,
       params: {
-        ...args
+        // ...args
       }
     }
     return Api.post(data)
