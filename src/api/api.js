@@ -1,39 +1,42 @@
 
-const CONFIG = require('./config')
-const axios = require('axios')
+import CONFIG from './config'
+import axios from 'axios'
+import intercept from './params'
+
+axios.interceptors.request.use((config) => intercept(config))
 
 class Api {
   get(data) {
     data.method ='get'
-    return request(data)
+    return this.request(data)
   }
 
   put(data) {
     data.method = 'put'
-    return request(data)
+    return this.request(data)
   }
 
   post(data) {
     data.method = 'post'
-    return request(data)
+    return this.request(data)
   }
 
   delete (data) {
     data.method = 'delete'
-    return request(data)
+    return this.request(data)
   }
 
   request(data) {
-    const config = Object.assign({}, CONIG)
+    let config = Object.assign({}, CONFIG) // 这里不能用const，
     const ACCESS_TOKEN = '872a5148-c8dd-4afa-8100-137c29df2f55'
     data.header && (config.headers = data.header)
-    config.body = data.params
     data.accesstoken && (config.body.accesstoken = ACCESS_TOKEN)
     config.url = data.url
     config.method = data.method
+    config.body = data.params
     axios.default.withCredentials = true
     return axios(config)
   }
 }
 
-module.exports = new Api;
+export default new Api();

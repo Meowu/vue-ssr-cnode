@@ -11,11 +11,8 @@ export function createRouter() {
     mode: 'history',
     routes: [
       {
-        path: '/',
-        component: createList('all')
-      },
-      {
         path: '/all',
+        component: createList('all')
       },
       {
         path: '/good',
@@ -28,7 +25,11 @@ export function createRouter() {
       },
       {
         path: '/hire'
-      }
+      },
+      {
+        path: '/',
+        redirect: '/all'
+      },
     ]
   })
 }

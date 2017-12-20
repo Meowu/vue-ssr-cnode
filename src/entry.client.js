@@ -19,8 +19,8 @@ Vue.mixin({
 
 const { app, router, store } = createApp();
 
-if (window.__INITIAL_STATE_) {
-  store.replaceState(window.__INITIAL_STATE_);
+if (window.__INITIAL_STATE__) {  // _ _ ... _
+  store.replaceState(window.__INITIAL_STATE__);
 }
 
 router.onReady(() => {

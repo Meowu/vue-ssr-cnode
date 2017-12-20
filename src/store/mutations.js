@@ -1,5 +1,7 @@
 export default {
   SET_LIST(state, {type, topics}) {
-    staet.lists[type] = topics
+    state.lists[type] = topics
+    console.log(state.lists[type]);
+    console.log(topics[0]);
   }
 }

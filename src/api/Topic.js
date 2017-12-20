@@ -1,4 +1,4 @@
-const Api = rquire('./api')
+import Api from './api'
 
 export default {
   /**
@@ -9,11 +9,14 @@ export default {
    * limit: Number
    * mdrender: String String 当为 false 时，不渲染。默认为 true，渲染出现的所有 markdown 格式文本。
    */
-  getTopics(args) {
+  getTopics({ tab, limit, page}) {
     const data = {
       url: '/topics',
       params: {
-        // ...args
+        // ...ars
+        tab,
+        limit,
+        page
       }
     }
     return Api.get(data)

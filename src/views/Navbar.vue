@@ -67,7 +67,7 @@ export default {
 
 <style lang="css" scoped>
   div.nav-bar {
-    height: 15%;
+    height: 18%;
     width: 100%;
   }
   .fixedBar {
@@ -78,7 +78,7 @@ export default {
   .header {
     text-align: center;
     display: flex;
-    height: 70%;
+    height: 60%;
     width: 100%;
     background: rgb(68, 68, 68);
   }
@@ -115,20 +115,26 @@ export default {
     border-radius: 50%;
   }
   div.tab {
-    height: 30%;
+    height: 40%;
+    /* line-height: 45px; */
+    align-items: center;
     display: flex;
-    background-color: #ddd;
-    padding: 5px 0;
+    box-sizing: border-box;
+    background-color: #eee;
+    /* padding: 5px 0; */
   }
   div.tab a{
     border-radius: 5px;
     background-color: #fff;
     border: 1px solid #aaa;
     margin: 3px 5px;
+    /* height:  */
     padding: 2px 0;
     color: #333;
     text-decoration: none;
-    font-size: 0.8em;
+    font-size: 1em;
+    height: 25px;
+    line-height: 25px;
     flex: auto;
     text-align: center;
   }

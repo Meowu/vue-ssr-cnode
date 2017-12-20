@@ -35,14 +35,15 @@ export default {
   },
   computed: {
     // ...mapState(
-    //   limit: state => state.articles.limit,
-    //   page: state => state.articles.page,
-    //   currentTab: state => state.articles.currentTab,
-    //   topic_data: state => state.articles.topic_data,
-    //   loading: state => state.loading,
+    //   // limit: state => state.articles.limit,
+    //   // page: state => state.articles.page,
+    //   // currentTab: state => state.articles.currentTab,
+    //   // loading: state => state.loading,
+    //   // topic_data: state => state.articles.topic_data,
+    //   // topic_data: state => state.lists[this.type]
     // })
     topic_data(){
-      this.$store.state.lists[this.type]
+      return this.$store.state.lists[this.type]
     }
   },
   methods: {
@@ -76,19 +77,21 @@ export default {
         this.$store.dispatch('isLoading', false)
       }
     },
-    readContent (id) {
-      axios.get(`https://cnodejs.org/api/v1/topic/${id}`)
-      .then((res) => {
-        this.$store.dispatch('renderContent', res.data.data)
-        // this.$store.dispatch('articleList', res.data)
-      })
-      this.$store.dispatch('isLoading', false)
-      this.$store.dispatch('isContent', true)
-      this.$router.push(`/topics/content/${id}`)
-    }
+    // readContent (id) {
+    //   axios.get(`https://cnodejs.org/api/v1/topic/${id}`)
+    //   .then((res) => {
+    //     this.$store.dispatch('renderContent', res.data.data)
+    //     // this.$store.dispatch('articleList', res.data)
+    //   })
+    //   this.$store.dispatch('isLoading', false)
+    //   this.$store.dispatch('isContent', true)
+    //   this.$router.push(`/topics/content/${id}`)
+    // }
   },
   created () {   // 方法和生命周期钩子中引用计算属性要加this
     // this.fetchData()
+    console.log('create.');
+    console.log(this.$store.state.lists.all);
   },
   filters: {
     formatTime: function (value) {
@@ -143,21 +146,23 @@ export default {
     box-sizing: border-box;
     width: 100%;
     font-size: 0.9em;
-    margin-top: 100px;
+    margin-top: 121px;
   }
   div.article {
-    padding: 10px;
+    padding:  5px 10px;
     position: relative;
     border-bottom: 1px solid #ccc;
     background-color: #fff;
   }
   div.article p.title {
-    margin-bottom: 10px;
+    /* margin-bottom: 0 0 10px 0; */
+    margin: 5px 0;
   }
   div.article-info a.user-image {
     display: inline-block;
     vertical-align: middle;
     width: 10%;
+    margin-right: 8px;
   }
   a.user-image img {
     border-radius: 50%;

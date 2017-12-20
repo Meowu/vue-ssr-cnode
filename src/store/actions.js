@@ -1,10 +1,12 @@
 import { Topic, User, Comment } from '../api'
 export default {
-  async FETCH_LIST({commit, dispatch, state}, payload) {
-    console.log("FETCH");
-    const res = await Topic.getTopics(payload)
-    const type = payload.type
-    const topics = res.data
-    commit('SET_LIST', {type, topics})
+  FETCH_LIST({commit, dispatch, state}, payload) {
+    return Topic.getTopics(payload).then(res => {
+      const type = payload.tab
+      const topics = res.data.data
+      console.log(topics.length);
+      // console.log(type);
+      commit('SET_LIST', {type, topics})
+    }).catch(e => console.log(e))
   }
 }
