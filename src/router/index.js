@@ -16,15 +16,19 @@ export function createRouter() {
       },
       {
         path: '/good',
+        component: createList('good')
       },
       {
         path: '/share',
+        component: createList('share')
       },
       {
         path: '/ask',
+        component: createList('ask')
       },
       {
-        path: '/hire'
+        path: '/job',
+        component: createList('job')
       },
       {
         path: '/',

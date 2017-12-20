@@ -25,7 +25,9 @@ import { mapState } from 'vuex';
 export default {
   name: 'article-list',
   data () {
-    return {}
+    return {
+      isBottom: false,
+    }
   },
   props: {
     type: {
@@ -34,48 +36,37 @@ export default {
     }
   },
   computed: {
-    // ...mapState(
-    //   // limit: state => state.articles.limit,
-    //   // page: state => state.articles.page,
-    //   // currentTab: state => state.articles.currentTab,
-    //   // loading: state => state.loading,
-    //   // topic_data: state => state.articles.topic_data,
-    //   // topic_data: state => state.lists[this.type]
-    // })
     topic_data(){
       return this.$store.state.lists[this.type]
     }
   },
+  watch: {
+    'isBottom'(val) {
+      if (val) {
+        console.log(val);
+        console.log(this.$store);
+       const payload = this.$store.state.params
+       console.log(payload);
+       payload.page++
+       this.$store.dispatch('FETCH_LIST', payload)
+      }
+    }
+  },
+  mounted() {
+    window.onscroll = () => {
+      this.bottom()
+    }
+  },
   methods: {
-    fetchData () {
-        axios.get(`https://cnodejs.org/api/v1/topics?tab=${this.currentTab}&page=${this.page}&limit=${this.limit}`)
-        .then((res) => {
-          this.$store.dispatch('initData', res.data.data)
-          // this.$store.dispatch('articleList', res.data)
-        })
+    bottom() {
+      const clientHeight = document.documentElement.clientHeight || document.body.clientHeight 
+      const scroll = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
+      const pageHeight = document.documentElement.scrollHeight || document.body.scrollHeight
+      this.isBottom = clientHeight + scroll >= pageHeight
     },
     throttle (fn) {
       clearTimeout(fn.id);
       fn.id = setTimeout(fn, 200)
-    },
-    asynData () {
-      let x = window.pageXOffset
-      let y = window.pageYOffset
-      localStorage.setItem('pageX', x)
-      localStorage.setItem('pageY', y)
-      // 存在一个问题，到了底部之后如果继续拖动，会反复触发请求数据，暂未解决。
-      if (document.documentElement.scrollHeight - window.pageYOffset === document.documentElement.clientHeight) {
-        this.$store.dispatch('isLoading', true)
-        this.$store.dispatch('changeLimit')
-        axios.get(`https://cnodejs.org/api/v1/topics?tab=${this.currentTab}&page=${this.page}&limit=${this.limit}`)
-        .then((res) => {
-          this.$store.dispatch('initData', res.data.data)
-          this.$store.dispatch('isLoading', false)
-          // this.$store.dispatch('articleList', res.data)
-        })
-      } else {
-        this.$store.dispatch('isLoading', false)
-      }
     },
     // readContent (id) {
     //   axios.get(`https://cnodejs.org/api/v1/topic/${id}`)
@@ -87,11 +78,6 @@ export default {
     //   this.$store.dispatch('isContent', true)
     //   this.$router.push(`/topics/content/${id}`)
     // }
-  },
-  created () {   // 方法和生命周期钩子中引用计算属性要加this
-    // this.fetchData()
-    console.log('create.');
-    console.log(this.$store.state.lists.all);
   },
   filters: {
     formatTime: function (value) {

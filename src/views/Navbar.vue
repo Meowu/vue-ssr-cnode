@@ -6,12 +6,12 @@
       <span class="add-topic" @click='publish'><i class="fa fa-pencil-square-o" aria-hidden="true"></i></span>
     </div>
     <div class="tab">
-      <a :class="{current_tab: isCurrent==='all'}" @click.stop='changeTab("all")'><span>全部</span></a>
-      <a :class="{current_tab: isCurrent==='good'}" @click.stop='changeTab("good")'><span>精华</span></a>
-      <a :class="{current_tab: isCurrent==='share'}" @click.stop='changeTab("share")'><span>分享</span></a>
-      <a :class="{current_tab: isCurrent==='ask'}" @click.stop='changeTab("ask")'><span>问答</span></a>
-      <a :class="{current_tab: isCurrent==='job'}" @click.stop='changeTab("job")'><span>招聘</span></a>
-      <!-- <a :class="{current_tab: isCurrent==='dev'}" @click.stop='changeTab("dev")'><span>测试</span></a> -->
+      <a :class="{current_tab: path==='/all'}" @click="$router.push('/all')"><span>全部</span></a>
+      <a :class="{current_tab: path==='/good'}" @click="$router.push('/good')"><span>精华</span></a>
+      <a :class="{current_tab: path==='/share'}" @click="$router.push('/share')"><span>分享</span></a>
+      <a :class="{current_tab: path==='/ask'}" @click="$router.push('/ask')"><span>问答</span></a>
+      <a :class="{current_tab: path==='/job'}" @click="$router.push('/job')"><span>招聘</span></a>
+      <!-- <a :class="{current_tab: path==='dev'}" @click.stop='changeTab("dev")'><span>测试</span></a> -->
     </div>
   </div>
 </template>
@@ -22,18 +22,24 @@ export default {
   name: 'NavigationBar',
   data() {
     return {
-      isCurrent: 'all'
+      path: this.$route.path
     }
   },
   // computed: {
   //   ...mapState([
-  //     'isCurrent',
+  //     'path',
   //     'isLogin',
   //     'avatar_url',
   //     'user_id',
   //     'loginname'
   //   ])
   // },
+  watch: {
+    '$route'(val) {
+      // 复用组件不会重新挂载，data中的path感知不到路由的改变，watch同步变化。
+      this.path = val.path
+    }
+  },
   methods: {
     login () {
       if (!this.isLogin) {
@@ -52,7 +58,7 @@ export default {
     },
     changeTab (tab) {
       window.scrollTo(0, 0)
-      this.$store.dispatch('isCurrent', tab)
+      this.$store.dispatch('path', tab)
       this.$store.dispatch('changeTopic', tab)
       this.$store.dispatch('resetLimit')
       this.$router.push(`/topics/${tab}`)
