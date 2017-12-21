@@ -23,13 +23,11 @@
 </template>
 
 <script>
-import Bottombar from './BottomBar';
-import Content from './Content';
-import Comments from './Comment';
-import Reply from './Reply';
-import {mapState} from 'vuex';
+import Bottombar from './BottomBar.vue';
+import Content from './Content.vue';
+import Comments from './Comment.vue';
+import Reply from './Reply.vue';
 import axios from 'axios';
-import toast from '../common/utils/toast';
 
 export default {
   name: 'content',
@@ -39,15 +37,18 @@ export default {
     'comment-list': Comments,
     'reply-box': Reply,
   },
+  asyncData({store, route}) {
+    store.dispatch('FETCH_TOPIC_ITEM', route.params.id)
+  },
   data () {
     return {
     }
   },
   computed: {
-    ...mapState({
-      topicDatas: state => state.content.topic_content,
-      reply: state => state.reply
-    })
+    topicDatas() {
+      console.log(this.$store.state.content);
+      return this.$store.state.content
+    }
   },
   mounted () {
     document.body.onclick = (e) => {

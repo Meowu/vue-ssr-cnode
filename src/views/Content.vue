@@ -4,13 +4,12 @@
 </template>
 
 <script>
-import {mapState} from 'vuex';
 export default {
   name: 'content',
   computed: {
-    ...mapState({
-      topicDatas: state => state.content.topic_content
-    })
+    topicDatas() {
+      return this.$store.state.content
+    }
   }
 }
 </script>

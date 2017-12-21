@@ -8,7 +8,6 @@
 </template>
 
 <script>
-import toast from '../common/utils/toast';
 
 export default {
   name: 'bottom-bar',

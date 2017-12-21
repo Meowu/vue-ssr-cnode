@@ -11,8 +11,6 @@
 </template>
 
 <script>
-import {mapState} from 'vuex'
-import toast from '../common/utils/toast'
 
 export default {
     name: 'reply',
@@ -22,12 +20,12 @@ export default {
         }
     },
     computed: {
-        ...mapState({
-        topicDatas: state => state.content.topic_content,
-        reply_id: state => state.repliedId,
-        tokens: state => state.token,
-        name: state => state.commentName
-    })
+    //     ...mapState({
+    //     topicDatas: state => state.content.topic_content,
+    //     reply_id: state => state.repliedId,
+    //     tokens: state => state.token,
+    //     name: state => state.commentName
+    // })
   },
     mounted () {
         const textBox = document.querySelector('.content')

@@ -4,5 +4,11 @@ export default {
   },
   SET_PARAMS(state, payload) {
     state.params = payload
+  },
+  TOGGLE_NAVBAR(state) {
+    state.showNavbar = !state.showNavbar
+  },
+  SET_DETAILS(state, content) {
+    state.content = content
   }
 }

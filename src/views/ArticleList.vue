@@ -1,7 +1,7 @@
 <template lang="html">
   <div class="article-list">
     <div class="article" v-for='topic in topic_data'>
-      <p class="title" @click='readContent(topic.id)'>{{ topic.title }}</p>
+      <p class="title" @click='$router.push(`/topic/${topic.id}`)'>{{ topic.title }}</p>
       <div class="article-info">
         <a href="#" class="user-image"><img :src="topic.author.avatar_url" alt="userimage"></a>
         <p class="reply-time">

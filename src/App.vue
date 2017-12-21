@@ -9,7 +9,7 @@
 <template>
   <div id='app'>
     <!-- <p>Welcome to Vue SSR.</p> -->
-    <nav-bar />
+    <nav-bar v-show="$store.state.showNavbar" />
     <router-view></router-view>
   </div>
 </template>

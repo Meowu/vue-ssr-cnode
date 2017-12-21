@@ -16,10 +16,7 @@
 </template>
 
 <script>
-import {mapState} from 'vuex';
-import toast from '../common/utils/toast';
-import axios from 'axios';
-import Reply from './Reply';
+import Reply from './Reply.vue';
 
 export default {
   name: 'comment',
@@ -27,10 +24,13 @@ export default {
     'reply-box': Reply
   },
   computed: {
-    ...mapState({
-      topicDatas: state => state.content.topic_content,
-      replied: state => state.reply
-    })
+      topicDatas() {
+      return this.$store.state.content
+    }
+    // ...mapState({
+    //   topicDatas: state => state.content,
+    //   replied: state => state.reply
+    // })
   },
   mounted () {
     if (!this.topicDatas.replies.length) {

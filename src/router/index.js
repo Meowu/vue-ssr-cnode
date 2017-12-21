@@ -31,6 +31,10 @@ export function createRouter() {
         component: createList('job')
       },
       {
+        path: '/topic/:id',
+        component: () => import('../views/ArticleContent.vue')
+      },
+      {
         path: '/',
         redirect: '/all'
       },
