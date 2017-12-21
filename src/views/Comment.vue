@@ -78,12 +78,13 @@ export default {
   div.comment-list div.comment {
     border-bottom: 1px solid #ccc;
     margin-bottom: 5px;
-    padding: 5px 10px 0 10px;
+    padding: 8px 10px 0 10px;
   }
   div.comment-list div.header span {
     /*display: inline-block;*/
     margin-right: 10px;
-    vertical-align: baseline;
+    height: 45px;
+    vertical-align: top;
     /*margin-bottom: 5px;*/
     color: #888;
     font-size: 0.8em;
@@ -99,6 +100,7 @@ export default {
   }
   div.comment-list div.header span.comment-info {
     display: inline-block;
+    /* height: 45px; */
     line-height: 1.5;
   }
   div.comment-list div.header span.author-url img{

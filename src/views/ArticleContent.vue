@@ -27,7 +27,6 @@ import Bottombar from './BottomBar.vue';
 import Content from './Content.vue';
 import Comments from './Comment.vue';
 import Reply from './Reply.vue';
-import axios from 'axios';
 
 export default {
   name: 'content',
@@ -46,7 +45,6 @@ export default {
   },
   computed: {
     topicDatas() {
-      console.log(this.$store.state.content);
       return this.$store.state.content
     }
   },
@@ -58,7 +56,7 @@ export default {
     window.scrollTo(0, 0);
   },
   beforeDestroy () {
-    this.$store.dispatch('rendContent', null)
+    this.$store.commit('SET_CONTENT', null)
   },
   methods: {
     checkAuthor (name) {
